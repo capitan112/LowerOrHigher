@@ -12,6 +12,7 @@ protocol CardsPresenterProtocol {
     var dataFetcherService: DataFetcherProtocol? { get set }
     var viewController: CardsDisplayLogic? { get set }
     func fetchCards()
+    func shuffleCards()
 }
 
 protocol CardsDataStore {
@@ -21,12 +22,18 @@ protocol CardsDataStore {
 class Presenter: CardsPresenterProtocol, CardsDataStore {
     var dataFetcherService: DataFetcherProtocol?
     var viewController: CardsDisplayLogic?
-    var cards: [Card]?
+    internal var cards: [Card]?
+    var shuffledCards: [Card]?
 
     func fetchCards() {
         dataFetcherService?.fetchCardsInfo(completion: { [unowned self] cards in
             self.cards = cards
+            self.shuffleCards()
             self.viewController?.updateCardView()
         })
+    }
+    
+    func shuffleCards() {
+        shuffledCards = cards?.shuffled()
     }
 }

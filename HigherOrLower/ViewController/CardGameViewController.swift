@@ -51,7 +51,9 @@ class CardGameViewController: UIViewController, CardsDisplayLogic {
 
     // MARK: - Protocol methods
 
-    func updateCardView() {}
+    func updateCardView() {
+        
+    }
 
     func hideLoadingIndicator() {
         hideIndicator()
