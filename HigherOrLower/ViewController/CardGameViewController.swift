@@ -10,59 +10,62 @@ import UIKit
 
 import UIKit
 
-protocol DisplayLogic: class {
+protocol CardsDisplayLogic: class {
     func updateCardView()
+    func hideLoadingIndicator()
 }
 
-
-class CardGameViewController: UIViewController, DisplayLogic {
+class CardGameViewController: UIViewController, CardsDisplayLogic {
     var presenter: (CardsPresenterProtocol & CardsDataStore)?
-    
+
     // MARK: Object lifecycle
-    
+
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         setup()
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setup()
     }
-    
+
     // MARK: Setup
-    
+
     private func setup() {
         let viewController = self
         presenter = Presenter()
         presenter?.viewController = viewController
         presenter?.dataFetcherService = DataFetcherService()
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         config()
     }
-    
+
     private func config() {
         showIndicator()
-
+        presenter?.fetchCards()
     }
 
     // MARK: - Protocol methods
-    func updateCardView() {
-        
+
+    func updateCardView() {}
+
+    func hideLoadingIndicator() {
+        hideIndicator()
     }
 
     // MARK: - Show/hide indicator
-    
+
     func showIndicator() {
         performUIUpdatesOnMain {
             LoadingIndicatorView.show()
             UIApplication.shared.isNetworkActivityIndicatorVisible = true
         }
     }
-    
+
     func hideIndicator() {
         performUIUpdatesOnMain {
             LoadingIndicatorView.hide()
@@ -70,4 +73,3 @@ class CardGameViewController: UIViewController, DisplayLogic {
         }
     }
 }
-
