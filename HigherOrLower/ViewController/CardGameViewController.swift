@@ -20,14 +20,12 @@ class CardGameViewController: UIViewController, CardsDisplayLogic {
     @IBOutlet var playedCardView: CardView!
     @IBOutlet var scoreLabel: UILabel!
     @IBOutlet var livesLabel: UILabel!
-
     @IBOutlet var lowerButton: UIButton!
     @IBOutlet var higherButton: UIButton!
     @IBOutlet var startNewGameButton: UIButton!
     @IBOutlet var gameOverLabel: UILabel!
 
     var gamePresenter: (CardsPresenterProtocol & CardsDataStore)?
-    var previousCard: Card?
 
     // MARK: Object lifecycle
 
@@ -92,7 +90,7 @@ class CardGameViewController: UIViewController, CardsDisplayLogic {
         }
 
         presentCard(card: card)
-        setupPreviousCard(card)
+        gamePresenter?.setupPreviousCard(card)
     }
 
     fileprivate func presentCard(card: Card) {
@@ -103,10 +101,6 @@ class CardGameViewController: UIViewController, CardsDisplayLogic {
 
     fileprivate func compareCards(lowerCard: Card, higherCard: Card) {
         gamePresenter?.compareCards(lowerCard: lowerCard, higherCard: higherCard)
-    }
-
-    fileprivate func setupPreviousCard(_ card: Card) {
-        previousCard = card
     }
 
     func hideLoadingIndicator() {
@@ -135,12 +129,12 @@ class CardGameViewController: UIViewController, CardsDisplayLogic {
         }
 
         presentCard(card: card)
-        guard let previousCard = previousCard else {
+        guard let previousCard = gamePresenter?.previousCard else {
             return
         }
 
         compareCards(lowerCard: card, higherCard: previousCard)
-        setupPreviousCard(card)
+        gamePresenter?.setupPreviousCard(card)
     }
 
     @IBAction func higherButonPressed(_: Any) {
@@ -150,12 +144,12 @@ class CardGameViewController: UIViewController, CardsDisplayLogic {
 
         presentCard(card: card)
 
-        guard let previousCard = previousCard else {
+        guard let previousCard = gamePresenter?.previousCard else {
             return
         }
 
         compareCards(lowerCard: previousCard, higherCard: card)
-        setupPreviousCard(card)
+        gamePresenter?.setupPreviousCard(card)
     }
 
     @IBAction func startNewGameButtonPressed(_: Any) {

@@ -11,12 +11,15 @@ import Foundation
 protocol CardsPresenterProtocol {
     var dataFetcherService: DataFetcherProtocol? { get set }
     var viewController: CardsDisplayLogic? { get set }
+    var previousCard: Card? { get set }
+    
     func compareCards(lowerCard: Card, higherCard: Card)
     func fetchCards()
     func shuffleCards()
     func gameOver()
     func startNewGame()
     func getCard() -> Card?
+    func setupPreviousCard(_ card: Card)
 }
 
 protocol CardsDataStore {
@@ -29,6 +32,7 @@ class CardGamePresenter: CardsPresenterProtocol, CardsDataStore {
     internal var cards: [Card]?
     var shuffledCards: [Card]?
     var scoreCounter: ScoreCounter!
+    var previousCard: Card?
 
     func fetchCards() {
         scoreCounter = ScoreCounter()
@@ -59,11 +63,16 @@ class CardGamePresenter: CardsPresenterProtocol, CardsDataStore {
             guard let card = shuffledCards?.removeLast() else {
                 return nil
             }
+            
             return card
         } else {
             gameOver()
             return nil
         }
+    }
+    
+    func setupPreviousCard(_ card: Card) {
+        previousCard = card
     }
 
     fileprivate func cardsDeckNotEmpty() -> Bool {
