@@ -11,7 +11,7 @@ import Foundation
 protocol CardsPresenterProtocol {
     var dataFetcherService: DataFetcherProtocol? { get set }
     var viewController: CardsDisplayLogic? { get set }
-    func compareCards(leftCard: Card, rightCard: Card)
+    func compareCards(lowerCard: Card, higherCard: Card)
     func fetchCards()
     func shuffleCards()
     func gameOver()
@@ -34,6 +34,7 @@ class Presenter: CardsPresenterProtocol, CardsDataStore {
         dataFetcherService?.fetchCardsInfo(completion: { [unowned self] cards in
             self.cards = cards
             self.shuffleCards()
+            self.updateUI()
         })
 
         setUpScore()
@@ -45,22 +46,37 @@ class Presenter: CardsPresenterProtocol, CardsDataStore {
 
     func shuffleCards() {
         shuffledCards = cards?.shuffled()
+    }
+
+    func updateUI() {
         viewController?.hideLoadingIndicator()
         viewController?.updateCardView()
     }
 
-    func compareCards(leftCard: Card, rightCard: Card) {
-        if rightCard.getCardRank() >= leftCard.getCardRank() {
+    func compareCards(lowerCard: Card, higherCard: Card) {
+        if higherCardBigger(lowerCard: lowerCard, higherCard: higherCard) {
             scoreCounter.increaseScore()
         } else {
-            if scoreCounter.getLives() > 0 {
-                scoreCounter.decreaseLives()
+            if livesIsNotOver() {
+                decreaseLives()
             } else {
                 gameOver()
             }
         }
 
         setUpScore()
+    }
+
+    fileprivate func decreaseLives() {
+        scoreCounter.decreaseLives()
+    }
+
+    fileprivate func higherCardBigger(lowerCard: Card, higherCard: Card) -> Bool {
+        return higherCard.getCardRank() >= lowerCard.getCardRank()
+    }
+
+    fileprivate func livesIsNotOver() -> Bool {
+        return scoreCounter.getLives() > 0
     }
 
     func gameOver() {
@@ -71,6 +87,7 @@ class Presenter: CardsPresenterProtocol, CardsDataStore {
         scoreCounter = ScoreCounter()
         setUpScore()
         shuffleCards()
+        updateUI()
         viewController?.showBetButton()
     }
 }

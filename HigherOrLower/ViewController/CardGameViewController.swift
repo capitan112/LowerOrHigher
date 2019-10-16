@@ -106,8 +106,8 @@ class CardGameViewController: UIViewController, CardsDisplayLogic {
         }
     }
 
-    fileprivate func compareCards(leftCard: Card, rightCard: Card) {
-        presenter?.compareCards(leftCard: leftCard, rightCard: rightCard)
+    fileprivate func compareCards(lowerCard: Card, higherCard: Card) {
+        presenter?.compareCards(lowerCard: lowerCard, higherCard: higherCard)
     }
 
     fileprivate func setupPreviousCard(_ card: Card) {
@@ -150,7 +150,7 @@ class CardGameViewController: UIViewController, CardsDisplayLogic {
                 return
             }
 
-            compareCards(leftCard: card, rightCard: previousCard)
+            compareCards(lowerCard: card, higherCard: previousCard)
             setupPreviousCard(card)
 
         } else {
@@ -170,7 +170,7 @@ class CardGameViewController: UIViewController, CardsDisplayLogic {
                 return
             }
 
-            compareCards(leftCard: previousCard, rightCard: card)
+            compareCards(lowerCard: previousCard, higherCard: card)
             setupPreviousCard(card)
 
         } else {
