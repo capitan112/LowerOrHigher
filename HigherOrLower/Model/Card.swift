@@ -13,15 +13,11 @@ struct Card: Decodable {
     var suit: String
     private let ranks = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
 
-    func cardTitle() -> String {
-        return value + " " + convertToSuit(from: suit).rawValue
-    }
-
     func getCardSymbol() -> String {
         return convertToSuit(from: suit).rawValue
     }
 
-    private func convertToSuit(from string: String) -> Suit {
+    fileprivate func convertToSuit(from string: String) -> Suit {
         var suit: Suit!
 
         switch string {
