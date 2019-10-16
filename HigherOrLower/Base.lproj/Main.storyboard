@@ -17,9 +17,79 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d6d-bt-BR0" customClass="CardView" customModule="HigherOrLower" customModuleProvider="target">
+                                <rect key="frame" x="120" y="291" width="174" height="324"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="08a-PX-fCh">
+                                        <rect key="frame" x="8" y="8" width="40" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="40" id="CO8-DN-SII"/>
+                                            <constraint firstAttribute="height" constant="40" id="KUz-eb-iyF"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qtc-is-475">
+                                        <rect key="frame" x="126" y="276" width="40" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="40" id="Z6Z-g6-Hrz"/>
+                                            <constraint firstAttribute="height" constant="40" id="lvH-7g-dXG"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YP9-dX-prc">
+                                        <rect key="frame" x="8" y="52" width="158" height="209"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="80"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="YP9-dX-prc" firstAttribute="centerX" secondItem="d6d-bt-BR0" secondAttribute="centerX" id="7uK-3Q-Idp"/>
+                                    <constraint firstAttribute="trailing" secondItem="YP9-dX-prc" secondAttribute="trailing" constant="8" id="9jH-fU-CvI"/>
+                                    <constraint firstItem="YP9-dX-prc" firstAttribute="centerY" secondItem="d6d-bt-BR0" secondAttribute="centerY" constant="-5.5" id="KbY-ul-gtB"/>
+                                    <constraint firstItem="08a-PX-fCh" firstAttribute="top" secondItem="d6d-bt-BR0" secondAttribute="top" constant="8" id="Xyq-eT-gCA"/>
+                                    <constraint firstAttribute="bottom" secondItem="qtc-is-475" secondAttribute="bottom" constant="8" id="c3U-e4-hLr"/>
+                                    <constraint firstItem="YP9-dX-prc" firstAttribute="leading" secondItem="d6d-bt-BR0" secondAttribute="leading" constant="8" id="geB-cT-WAL"/>
+                                    <constraint firstAttribute="bottom" secondItem="YP9-dX-prc" secondAttribute="bottom" constant="63" id="hun-1O-gNi"/>
+                                    <constraint firstAttribute="trailing" secondItem="qtc-is-475" secondAttribute="trailing" constant="8" id="j32-dR-9x7"/>
+                                    <constraint firstItem="YP9-dX-prc" firstAttribute="top" secondItem="d6d-bt-BR0" secondAttribute="top" constant="52" id="wVa-nc-0Mr"/>
+                                    <constraint firstItem="08a-PX-fCh" firstAttribute="leading" secondItem="d6d-bt-BR0" secondAttribute="leading" constant="8" id="zKX-Ya-Ylj"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="centerRank" destination="YP9-dX-prc" id="cix-a6-zBT"/>
+                                    <outlet property="leftUpSuit" destination="08a-PX-fCh" id="9ro-ec-lOP"/>
+                                    <outlet property="rightDownSuit" destination="qtc-is-475" id="Guh-5E-9kd"/>
+                                </connections>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zpH-bx-8mB">
+                                <rect key="frame" x="184" y="652" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="changeCardButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="IjO-s1-Mev"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="d6d-bt-BR0" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="WXP-ql-hm2"/>
+                            <constraint firstItem="d6d-bt-BR0" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="120" id="Wg4-st-6ci"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="d6d-bt-BR0" secondAttribute="bottom" constant="247" id="ZJl-Aw-tya"/>
+                            <constraint firstItem="d6d-bt-BR0" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="247" id="fsX-Vw-B7C"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="d6d-bt-BR0" secondAttribute="trailing" constant="120" id="mDG-G9-Mbh"/>
+                            <constraint firstItem="d6d-bt-BR0" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="s8u-vK-eqQ"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="playedCardView" destination="d6d-bt-BR0" id="nUg-GA-ZYn"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

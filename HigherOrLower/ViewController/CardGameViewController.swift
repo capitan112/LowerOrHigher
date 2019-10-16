@@ -8,8 +8,6 @@
 
 import UIKit
 
-import UIKit
-
 protocol CardsDisplayLogic: class {
     func updateCardView()
     func hideLoadingIndicator()
@@ -17,6 +15,7 @@ protocol CardsDisplayLogic: class {
 
 class CardGameViewController: UIViewController, CardsDisplayLogic {
     
+    @IBOutlet weak var playedCardView: CardView!
     var presenter: (CardsPresenterProtocol & CardsDataStore)?
 
     // MARK: Object lifecycle
@@ -55,7 +54,10 @@ class CardGameViewController: UIViewController, CardsDisplayLogic {
     func updateCardView() {
         performUIUpdatesOnMain {
             self.hideIndicator()
-            let card = self.presenter?.shuffledCards?[0]
+            if let card = self.presenter?.shuffledCards?[0] {
+                self.playedCardView.setupCardView(card: card)
+            }
+            
         }
     }
 
@@ -78,4 +80,9 @@ class CardGameViewController: UIViewController, CardsDisplayLogic {
             UIApplication.shared.isNetworkActivityIndicatorVisible = false
         }
     }
+    
+    @IBAction func changeCardButton(_ sender: Any) {
+        presenter?.shuffleCards()
+    }
+    
 }

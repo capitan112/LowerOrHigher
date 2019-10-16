@@ -20,6 +20,7 @@
 		4828DD52235660C000123C2E /* CardGamePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4828DD51235660C000123C2E /* CardGamePresenter.swift */; };
 		4828DD562356620C00123C2E /* GCDBlackBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4828DD542356620C00123C2E /* GCDBlackBox.swift */; };
 		4828DD572356620C00123C2E /* LoadingIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4828DD552356620C00123C2E /* LoadingIndicatorView.swift */; };
+		4828DD5923571A8B00123C2E /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4828DD5823571A8B00123C2E /* CardView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +51,7 @@
 		4828DD51235660C000123C2E /* CardGamePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardGamePresenter.swift; sourceTree = "<group>"; };
 		4828DD542356620C00123C2E /* GCDBlackBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCDBlackBox.swift; sourceTree = "<group>"; };
 		4828DD552356620C00123C2E /* LoadingIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingIndicatorView.swift; sourceTree = "<group>"; };
+		4828DD5823571A8B00123C2E /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				4828DD4E23565F7800123C2E /* Card.swift */,
+				4828DD5823571A8B00123C2E /* CardView.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -254,6 +257,7 @@
 				4828DD29235651AB00123C2E /* CardGameViewController.swift in Sources */,
 				4828DD4F23565F7800123C2E /* Card.swift in Sources */,
 				4828DD572356620C00123C2E /* LoadingIndicatorView.swift in Sources */,
+				4828DD5923571A8B00123C2E /* CardView.swift in Sources */,
 				4828DD4A23565EB100123C2E /* NetworkService.swift in Sources */,
 				4828DD52235660C000123C2E /* CardGamePresenter.swift in Sources */,
 				4828DD27235651AB00123C2E /* AppDelegate.swift in Sources */,

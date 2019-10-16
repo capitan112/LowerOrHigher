@@ -13,10 +13,14 @@ struct Card: Decodable {
     var suit: String
     
     func cardTitle() -> String {
-        return value + " " + convertStringToSuit(string: suit).rawValue
+        return value + " " + convertToSuit(from: suit).rawValue
     }
     
-    private func convertStringToSuit(string: String) -> Suit {
+    func getCardSymbol() -> String {
+        return convertToSuit(from: suit).rawValue
+    }
+    
+    private func convertToSuit(from string: String) -> Suit {
         var suit: Suit!
         
         switch string {
