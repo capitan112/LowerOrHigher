@@ -34,6 +34,7 @@ class Presenter: CardsPresenterProtocol, CardsDataStore {
     
     func shuffleCards() {
         shuffledCards = cards?.shuffled()
+        self.viewController?.hideLoadingIndicator() 
         self.viewController?.updateCardView()
     }
 }

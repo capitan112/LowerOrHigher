@@ -53,9 +53,13 @@ class CardGameViewController: UIViewController, CardsDisplayLogic {
 
     func updateCardView() {
         performUIUpdatesOnMain {
-            self.hideIndicator()
-            if let card = self.presenter?.shuffledCards?[0] {
-                self.playedCardView.setupCardView(card: card)
+            if self.cardsDeckNotEmpty() {
+                if let card = self.presenter?.shuffledCards?.removeLast() {
+                    self.playedCardView.setupCardView(card: card)
+                }
+            } else {
+                print("game over")
+
             }
             
         }
@@ -65,6 +69,10 @@ class CardGameViewController: UIViewController, CardsDisplayLogic {
         hideIndicator()
     }
 
+    private func cardsDeckNotEmpty() -> Bool {
+        return self.presenter?.shuffledCards?.count ?? 0 > 0
+    }
+    
     // MARK: - Show/hide indicator
 
     func showIndicator() {
@@ -81,8 +89,12 @@ class CardGameViewController: UIViewController, CardsDisplayLogic {
         }
     }
     
-    @IBAction func changeCardButton(_ sender: Any) {
-        presenter?.shuffleCards()
+    
+    @IBAction func loverButtonPressed(_ sender: Any) {
+        self.updateCardView()
     }
     
+    @IBAction func higherButonPressed(_ sender: Any) {
+        self.updateCardView()
+    }
 }
