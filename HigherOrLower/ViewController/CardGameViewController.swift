@@ -10,18 +10,17 @@ import UIKit
 
 protocol CardsDisplayLogic: class {
     var previousCard: Card? { get set }
-    
+
     func updateCardView()
     func hideLoadingIndicator()
 }
 
 class CardGameViewController: UIViewController, CardsDisplayLogic {
-    
-    @IBOutlet weak var playedCardView: CardView!
-    
-    @IBOutlet weak var scoreLabel: UILabel!
-    
-    @IBOutlet weak var livesLabel: UILabel!
+    @IBOutlet var playedCardView: CardView!
+
+    @IBOutlet var scoreLabel: UILabel!
+
+    @IBOutlet var livesLabel: UILabel!
     var presenter: (CardsPresenterProtocol & CardsDataStore)?
     var previousCard: Card?
 
@@ -63,38 +62,37 @@ class CardGameViewController: UIViewController, CardsDisplayLogic {
             guard let card = self.presenter?.shuffledCards?.removeLast() else {
                 return
             }
-            
+
             presentCard(card: card)
             setupPreviousCard(card)
-            
+
         } else {
             presenter?.gameOver()
         }
-        
     }
-    
+
     fileprivate func presentCard(card: Card) {
         performUIUpdatesOnMain {
             self.playedCardView.setupCardView(card: card)
         }
     }
-    
+
     fileprivate func compareCards(leftCard: Card, rightCard: Card) {
-        presenter?.compareCards(leftCard:leftCard, rightCard: rightCard)
+        presenter?.compareCards(leftCard: leftCard, rightCard: rightCard)
     }
-    
+
     fileprivate func setupPreviousCard(_ card: Card) {
         previousCard = card
     }
-    
+
     fileprivate func cardsDeckNotEmpty() -> Bool {
         return presenter?.shuffledCards?.count ?? 0 > 0
     }
-    
+
     func hideLoadingIndicator() {
         hideIndicator()
     }
-    
+
     // MARK: - Show/hide indicator
 
     func showIndicator() {
@@ -110,43 +108,42 @@ class CardGameViewController: UIViewController, CardsDisplayLogic {
             UIApplication.shared.isNetworkActivityIndicatorVisible = false
         }
     }
-    
-    
-    @IBAction func loverButtonPressed(_ sender: Any) {
+
+    @IBAction func loverButtonPressed(_: Any) {
         if cardsDeckNotEmpty() {
             guard let card = self.presenter?.shuffledCards?.removeLast() else {
                 return
             }
-            
+
             presentCard(card: card)
-            
+
             guard let previousCard = previousCard else {
                 return
             }
-            
+
             compareCards(leftCard: card, rightCard: previousCard)
             setupPreviousCard(card)
-            
+
         } else {
             presenter?.gameOver()
         }
     }
-    
-    @IBAction func higherButonPressed(_ sender: Any) {
+
+    @IBAction func higherButonPressed(_: Any) {
         if cardsDeckNotEmpty() {
             guard let card = self.presenter?.shuffledCards?.removeLast() else {
                 return
             }
-            
+
             presentCard(card: card)
-            
+
             guard let previousCard = previousCard else {
                 return
             }
-            
+
             compareCards(leftCard: previousCard, rightCard: card)
             setupPreviousCard(card)
-            
+
         } else {
             presenter?.gameOver()
         }

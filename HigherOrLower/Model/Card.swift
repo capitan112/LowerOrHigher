@@ -12,39 +12,37 @@ struct Card: Decodable {
     var value: String
     var suit: String
     private let ranks = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
-    
+
     func cardTitle() -> String {
         return value + " " + convertToSuit(from: suit).rawValue
     }
-    
+
     func getCardSymbol() -> String {
         return convertToSuit(from: suit).rawValue
     }
-    
+
     private func convertToSuit(from string: String) -> Suit {
         var suit: Suit!
-        
+
         switch string {
         case "hearts":
-            suit =  Suit.Heart
+            suit = Suit.Heart
         case "diamonds":
-            suit =  Suit.Diamond
+            suit = Suit.Diamond
         case "spades":
-            suit =  Suit.Spade
+            suit = Suit.Spade
         case "clubs":
             suit = Suit.Club
         default:
             break
         }
-        
+
         return suit
     }
-    
+
     func getCardRank() -> Int {
         return ranks.firstIndex(of: value) ?? 0
     }
-    
-    
 }
 
 enum Suit: String {

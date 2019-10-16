@@ -9,22 +9,20 @@
 import UIKit
 
 class CardView: UIView {
-
     @IBOutlet var leftUpSuit: UILabel!
     @IBOutlet var rightDownSuit: UILabel!
     @IBOutlet var centerRank: UILabel!
-    
-    override func draw(_ rect: CGRect) {
-        self.layer.cornerRadius = 20
-        self.layer.masksToBounds = true
-        self.layer.borderWidth = 1.0
-        self.layer.borderColor = UIColor.black.cgColor
+
+    override func draw(_: CGRect) {
+        layer.cornerRadius = 20
+        layer.masksToBounds = true
+        layer.borderWidth = 1.0
+        layer.borderColor = UIColor.black.cgColor
     }
-    
+
     func setupCardView(card: Card) {
         leftUpSuit.text = card.getCardSymbol()
         rightDownSuit.text = card.getCardSymbol()
         centerRank.text = card.value
     }
-
 }

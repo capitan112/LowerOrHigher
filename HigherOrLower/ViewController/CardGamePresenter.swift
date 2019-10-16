@@ -35,13 +35,12 @@ class Presenter: CardsPresenterProtocol, CardsDataStore {
             self.shuffleCards()
         })
     }
-    
+
     func shuffleCards() {
         shuffledCards = cards?.shuffled()
-        self.viewController?.hideLoadingIndicator()
-        self.viewController?.updateCardView()
+        viewController?.hideLoadingIndicator()
+        viewController?.updateCardView()
     }
-    
 
     func compareCards(leftCard: Card, rightCard: Card) {
         if rightCard.getCardRank() >= leftCard.getCardRank() {
@@ -49,19 +48,13 @@ class Presenter: CardsPresenterProtocol, CardsDataStore {
 //            print("win")
         } else {
             if scoreCounter.getLives() > 0 {
-               scoreCounter.decreaseLives()
-                
-            } else {
-                
-            }
+                scoreCounter.decreaseLives()
 
+            } else {}
         }
-        
     }
-    
+
     func gameOver() {
         print("gameOver")
     }
-    
-
 }
