@@ -55,57 +55,35 @@ class CardGameViewController: UIViewController, CardsDisplayLogic {
     // MARK: - Protocol methods
 
     func updateCardView() {
-        higherLowerCard()
-//        performUIUpdatesOnMain {
-//            if let card = self.presenter?.shuffledCards?.removeLast() {
-//                self.playedCardView.setupCardView(card: card)
-//
-//                if let previousCard = self.previousCard {
-//                    self.presenter?.compareCards(previousCard:previousCard, currentCard: card)
-//                }
-//
-//                self.previousCard = card
-//            }
-//        }
-    }
-
-    func higherLowerCard() {
-        if self.cardsDeckNotEmpty() {
-            if let card = self.presenter?.shuffledCards?.removeLast() {
-                performUIUpdatesOnMain {
-                    self.playedCardView.setupCardView(card: card)
-                }
-                
-                if let previousCard = self.previousCard {
-                    self.presenter?.compareCards(previousCard:previousCard, currentCard: card)
-                }
-                
-                previousCard = card
+        if cardsDeckNotEmpty() {
+            guard let card = self.presenter?.shuffledCards?.removeLast() else {
+                return
             }
-        } else {
-            presenter?.gameOver()
-        }        
-    }
-    
-    func compareLowerCard() {
-        if self.cardsDeckNotEmpty() {
-            if let card = self.presenter?.shuffledCards?.removeLast() {
-                performUIUpdatesOnMain {
-                    self.playedCardView.setupCardView(card: card)
-                }
-                
-                if let previousCard = self.previousCard {
-                    presenter?.compareCards(previousCard:card, currentCard: previousCard)
-                }
-                
-                previousCard = card
-            }
+            
+            presentCard(card: card)
+            setupPreviousCard(card)
+            
         } else {
             presenter?.gameOver()
         }
+        
     }
     
-    private func cardsDeckNotEmpty() -> Bool {
+    fileprivate func presentCard(card: Card) {
+        performUIUpdatesOnMain {
+            self.playedCardView.setupCardView(card: card)
+        }
+    }
+    
+    fileprivate func compareCards(leftCard: Card, rightCard: Card) {
+        presenter?.compareCards(leftCard:leftCard, rightCard: rightCard)
+    }
+    
+    fileprivate func setupPreviousCard(_ card: Card) {
+        previousCard = card
+    }
+    
+    fileprivate func cardsDeckNotEmpty() -> Bool {
         return presenter?.shuffledCards?.count ?? 0 > 0
     }
     
@@ -131,10 +109,42 @@ class CardGameViewController: UIViewController, CardsDisplayLogic {
     
     
     @IBAction func loverButtonPressed(_ sender: Any) {
-        compareLowerCard()
+        if cardsDeckNotEmpty() {
+            guard let card = self.presenter?.shuffledCards?.removeLast() else {
+                return
+            }
+            
+            presentCard(card: card)
+            
+            guard let previousCard = previousCard else {
+                return
+            }
+            
+            compareCards(leftCard: card, rightCard: previousCard)
+            setupPreviousCard(card)
+            
+        } else {
+            presenter?.gameOver()
+        }
     }
     
     @IBAction func higherButonPressed(_ sender: Any) {
-        higherLowerCard()
+        if cardsDeckNotEmpty() {
+            guard let card = self.presenter?.shuffledCards?.removeLast() else {
+                return
+            }
+            
+            presentCard(card: card)
+            
+            guard let previousCard = previousCard else {
+                return
+            }
+            
+            compareCards(leftCard: previousCard, rightCard: card)
+            setupPreviousCard(card)
+            
+        } else {
+            presenter?.gameOver()
+        }
     }
 }

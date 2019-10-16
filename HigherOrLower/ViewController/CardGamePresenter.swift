@@ -11,7 +11,7 @@ import Foundation
 protocol CardsPresenterProtocol {
     var dataFetcherService: DataFetcherProtocol? { get set }
     var viewController: CardsDisplayLogic? { get set }
-    func compareCards(previousCard: Card, currentCard: Card)
+    func compareCards(leftCard: Card, rightCard: Card)
     func fetchCards()
     func shuffleCards()
     func gameOver()
@@ -41,17 +41,17 @@ class Presenter: CardsPresenterProtocol, CardsDataStore {
     }
     
 
-    func compareCards(previousCard: Card, currentCard: Card) {
-        if currentCard.getCardRank() >= previousCard.getCardRank() {
-            
+    func compareCards(leftCard: Card, rightCard: Card) {
+        if rightCard.getCardRank() >= leftCard.getCardRank() {
+            print("win")
         } else {
-            
+            print("lose")
         }
         
     }
     
     func gameOver() {
-        
+        print("gameOver")
     }
     
 
