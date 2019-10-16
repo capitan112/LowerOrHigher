@@ -64,17 +64,21 @@ class CardGameViewController: UIViewController, CardsDisplayLogic {
     // MARK: - Protocol methods
 
     func hideBetButton() {
-        lowerButton.isHidden = true
-        higherButton.isHidden = true
-        startNewGameButton.isHidden = false
-        gameOverLabel.isHidden = false
+        performUIUpdatesOnMain {
+            self.lowerButton.isHidden = true
+            self.higherButton.isHidden = true
+            self.startNewGameButton.isHidden = false
+            self.gameOverLabel.isHidden = false
+        }
     }
 
     func showBetButton() {
-        lowerButton.isHidden = false
-        higherButton.isHidden = false
-        startNewGameButton.isHidden = true
-        gameOverLabel.isHidden = true
+        performUIUpdatesOnMain {
+            self.lowerButton.isHidden = false
+            self.higherButton.isHidden = false
+            self.startNewGameButton.isHidden = true
+            self.gameOverLabel.isHidden = true
+        }
     }
 
     func setupScore(score: ScoreCounter) {
