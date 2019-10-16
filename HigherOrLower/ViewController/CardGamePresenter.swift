@@ -80,7 +80,7 @@ class CardGamePresenter: CardsPresenterProtocol, CardsDataStore {
     }
 
     func compareCards(lowerCard: Card, higherCard: Card) {
-        if higherCardBigger(lowerCard: lowerCard, higherCard: higherCard) {
+        if higherCardIsBigger(lowerCard: lowerCard, higherCard: higherCard) {
             increaseScore()
         } else {
             decreaseLives()
@@ -101,7 +101,7 @@ class CardGamePresenter: CardsPresenterProtocol, CardsDataStore {
         scoreCounter.decreaseLives()
     }
 
-    fileprivate func higherCardBigger(lowerCard: Card, higherCard: Card) -> Bool {
+    fileprivate func higherCardIsBigger(lowerCard: Card, higherCard: Card) -> Bool {
         return higherCard.getCardRank() >= lowerCard.getCardRank()
     }
 
