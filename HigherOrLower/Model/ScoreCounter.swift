@@ -26,6 +26,14 @@ class ScoreCounter {
         score += 1
     }
 
+    func getScore() -> String {
+        return String(score)
+    }
+    
+    func getLives() -> String {
+        return String(lives)
+    }
+    
     func getScore() -> Int {
         return score
     }

@@ -90,7 +90,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V7B-7R-GCa">
-                                <rect key="frame" x="264" y="55" width="130" height="21"/>
+                                <rect key="frame" x="20" y="55" width="130" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="130" id="Ptm-ke-oR6"/>
                                 </constraints>
@@ -99,7 +99,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nJ2-SR-w8n">
-                                <rect key="frame" x="264" y="84" width="130" height="21"/>
+                                <rect key="frame" x="20" y="84" width="130" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="130" id="hMI-jt-4Jg"/>
                                 </constraints>
@@ -107,30 +107,57 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MfG-au-eXW">
+                                <rect key="frame" x="102.5" y="603" width="209" height="46"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="46" id="26Q-mw-CEp"/>
+                                    <constraint firstAttribute="width" constant="209" id="7Wg-cv-drc"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                <state key="normal" title="Start a new game"/>
+                                <connections>
+                                    <action selector="startNewGameButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3nk-ZN-s0Z"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Game Over" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eqd-gV-HMx">
+                                <rect key="frame" x="97" y="499" width="221" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="X4n-Pi-Ols" secondAttribute="trailing" constant="100" id="2uG-vI-XJv"/>
+                            <constraint firstItem="MfG-au-eXW" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="3cO-nc-ySa"/>
                             <constraint firstItem="nJ2-SR-w8n" firstAttribute="top" secondItem="V7B-7R-GCa" secondAttribute="bottom" constant="8" id="9Qe-Dl-S9i"/>
+                            <constraint firstItem="MfG-au-eXW" firstAttribute="top" secondItem="36u-VW-Xyo" secondAttribute="bottom" constant="16" id="AvC-2z-l7c"/>
                             <constraint firstItem="36u-VW-Xyo" firstAttribute="top" secondItem="d6d-bt-BR0" secondAttribute="bottom" constant="69" id="NZa-Qp-Ip6"/>
                             <constraint firstItem="V7B-7R-GCa" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="11" id="P4E-Gw-rdP"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="eqd-gV-HMx" secondAttribute="trailing" constant="96" id="RLb-8w-Dn2"/>
+                            <constraint firstItem="eqd-gV-HMx" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="97" id="URi-Vc-mzZ"/>
                             <constraint firstItem="36u-VW-Xyo" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="100" id="UoL-j2-e1E"/>
+                            <constraint firstItem="nJ2-SR-w8n" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="V8U-QR-bAa"/>
                             <constraint firstItem="d6d-bt-BR0" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="WXP-ql-hm2"/>
                             <constraint firstItem="d6d-bt-BR0" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="120" id="Wg4-st-6ci"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="d6d-bt-BR0" secondAttribute="bottom" constant="384" id="ZJl-Aw-tya"/>
+                            <constraint firstItem="V7B-7R-GCa" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="aNK-H2-0Pj"/>
                             <constraint firstItem="36u-VW-Xyo" firstAttribute="centerY" secondItem="X4n-Pi-Ols" secondAttribute="centerY" id="fKh-M4-c5X"/>
                             <constraint firstItem="d6d-bt-BR0" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="110" id="fsX-Vw-B7C"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="d6d-bt-BR0" secondAttribute="trailing" constant="120" id="mDG-G9-Mbh"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="V7B-7R-GCa" secondAttribute="trailing" constant="20" id="mUI-Ag-PCq"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="nJ2-SR-w8n" secondAttribute="trailing" constant="20" id="nVG-LU-jW9"/>
                             <constraint firstItem="d6d-bt-BR0" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" constant="-137" id="s8u-vK-eqQ"/>
+                            <constraint firstItem="eqd-gV-HMx" firstAttribute="top" secondItem="d6d-bt-BR0" secondAttribute="bottom" constant="21" id="sig-ca-sQw"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="gameOverLabel" destination="eqd-gV-HMx" id="cUz-gZ-BmL"/>
+                        <outlet property="higherButton" destination="X4n-Pi-Ols" id="Uaq-CL-ZTq"/>
                         <outlet property="livesLabel" destination="nJ2-SR-w8n" id="SnD-x9-GW4"/>
+                        <outlet property="lowerButton" destination="36u-VW-Xyo" id="sNL-ib-BFl"/>
                         <outlet property="playedCardView" destination="d6d-bt-BR0" id="nUg-GA-ZYn"/>
                         <outlet property="scoreLabel" destination="V7B-7R-GCa" id="w9B-FF-5hH"/>
+                        <outlet property="startNewGameButton" destination="MfG-au-eXW" id="GvB-QF-yxh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

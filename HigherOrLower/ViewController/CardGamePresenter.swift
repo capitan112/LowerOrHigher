@@ -15,6 +15,7 @@ protocol CardsPresenterProtocol {
     func fetchCards()
     func shuffleCards()
     func gameOver()
+    func startNewGame()
 }
 
 protocol CardsDataStore {
@@ -34,8 +35,15 @@ class Presenter: CardsPresenterProtocol, CardsDataStore {
             self.cards = cards
             self.shuffleCards()
         })
+        
+        setUpScore()
+        
     }
 
+    func setUpScore() {
+        viewController?.setupScore(score: scoreCounter)
+    }
+    
     func shuffleCards() {
         shuffledCards = cards?.shuffled()
         viewController?.hideLoadingIndicator()
@@ -45,16 +53,25 @@ class Presenter: CardsPresenterProtocol, CardsDataStore {
     func compareCards(leftCard: Card, rightCard: Card) {
         if rightCard.getCardRank() >= leftCard.getCardRank() {
             scoreCounter.increaseScore()
-//            print("win")
         } else {
             if scoreCounter.getLives() > 0 {
                 scoreCounter.decreaseLives()
-
-            } else {}
+            } else {
+                gameOver()
+            }
         }
+        
+        setUpScore()
     }
 
     func gameOver() {
-        print("gameOver")
+        viewController?.hideBetButton()
+    }
+    
+    func startNewGame() {
+        scoreCounter = ScoreCounter()
+        setUpScore()
+        shuffleCards()
+        viewController?.showBetButton()
     }
 }

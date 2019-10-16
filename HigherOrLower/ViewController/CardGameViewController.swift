@@ -9,18 +9,25 @@
 import UIKit
 
 protocol CardsDisplayLogic: class {
-    var previousCard: Card? { get set }
 
     func updateCardView()
     func hideLoadingIndicator()
+    func setupScore(score: ScoreCounter)
+    func hideBetButton()
+    func showBetButton()
 }
 
 class CardGameViewController: UIViewController, CardsDisplayLogic {
+    
     @IBOutlet var playedCardView: CardView!
-
     @IBOutlet var scoreLabel: UILabel!
-
     @IBOutlet var livesLabel: UILabel!
+    
+    @IBOutlet weak var lowerButton: UIButton!
+    @IBOutlet weak var higherButton: UIButton!
+    @IBOutlet var startNewGameButton: UIButton!
+    @IBOutlet weak var gameOverLabel: UILabel!
+    
     var presenter: (CardsPresenterProtocol & CardsDataStore)?
     var previousCard: Card?
 
@@ -52,10 +59,29 @@ class CardGameViewController: UIViewController, CardsDisplayLogic {
 
     private func config() {
         showIndicator()
+        showBetButton()
         presenter?.fetchCards()
     }
 
     // MARK: - Protocol methods
+    func hideBetButton() {
+        lowerButton.isHidden = true
+        higherButton.isHidden = true
+        startNewGameButton.isHidden = false
+        gameOverLabel.isHidden = false
+    }
+    
+    func showBetButton() {
+        lowerButton.isHidden = false
+        higherButton.isHidden = false
+        startNewGameButton.isHidden = true
+        gameOverLabel.isHidden = true
+    }
+    
+    func setupScore(score: ScoreCounter) {
+        scoreLabel.text = "Score: " + score.getScore()
+        livesLabel.text = "Lives: " + score.getLives()
+    }
 
     func updateCardView() {
         if cardsDeckNotEmpty() {
@@ -148,4 +174,11 @@ class CardGameViewController: UIViewController, CardsDisplayLogic {
             presenter?.gameOver()
         }
     }
+    
+    
+    @IBAction func startNewGameButtonPressed(_ sender: Any) {
+        presenter?.startNewGame()
+    }
+    
+    
 }
