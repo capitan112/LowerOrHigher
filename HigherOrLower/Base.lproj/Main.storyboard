@@ -92,20 +92,20 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V7B-7R-GCa">
-                                <rect key="frame" x="20" y="55" width="130" height="21"/>
+                                <rect key="frame" x="20" y="55" width="130" height="25.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="130" id="Ptm-ke-oR6"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nJ2-SR-w8n">
-                                <rect key="frame" x="20" y="84" width="130" height="21"/>
+                                <rect key="frame" x="20" y="88.5" width="130" height="25.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="130" id="hMI-jt-4Jg"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
