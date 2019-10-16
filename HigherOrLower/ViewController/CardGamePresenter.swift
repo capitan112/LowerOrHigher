@@ -16,13 +16,14 @@ protocol CardsPresenterProtocol {
     func shuffleCards()
     func gameOver()
     func startNewGame()
+    func getCard() -> Card?
 }
 
 protocol CardsDataStore {
     var shuffledCards: [Card]? { get set }
 }
 
-class Presenter: CardsPresenterProtocol, CardsDataStore {
+class CardGamePresenter: CardsPresenterProtocol, CardsDataStore {
     var dataFetcherService: DataFetcherProtocol?
     var viewController: CardsDisplayLogic?
     internal var cards: [Card]?
@@ -53,15 +54,31 @@ class Presenter: CardsPresenterProtocol, CardsDataStore {
         viewController?.updateCardView()
     }
 
+    func getCard() -> Card? {
+        if cardsDeckNotEmpty() {
+            guard let card = shuffledCards?.removeLast() else {
+                return nil
+            }
+            return card
+        } else {
+            gameOver()
+            return nil
+        }
+    }
+
+    fileprivate func cardsDeckNotEmpty() -> Bool {
+        return shuffledCards?.count ?? 0 > 0
+    }
+
     func compareCards(lowerCard: Card, higherCard: Card) {
         if higherCardBigger(lowerCard: lowerCard, higherCard: higherCard) {
             increaseScore()
         } else {
-            if livesIsNotOver() {
-                decreaseLives()
-            } else {
-                gameOver()
-            }
+            decreaseLives()
+        }
+
+        if livesIsOver() {
+            gameOver()
         }
 
         setUpScore()
@@ -70,7 +87,7 @@ class Presenter: CardsPresenterProtocol, CardsDataStore {
     fileprivate func increaseScore() {
         scoreCounter.increaseScore()
     }
-    
+
     fileprivate func decreaseLives() {
         scoreCounter.decreaseLives()
     }
@@ -79,12 +96,13 @@ class Presenter: CardsPresenterProtocol, CardsDataStore {
         return higherCard.getCardRank() >= lowerCard.getCardRank()
     }
 
-    fileprivate func livesIsNotOver() -> Bool {
-        return scoreCounter.getLives() > 0
+    fileprivate func livesIsOver() -> Bool {
+        return scoreCounter.getLives() < 1
     }
 
     func gameOver() {
-        viewController?.hideBetButton()
+        setUpScore()
+        viewController?.hideBetButtons()
     }
 
     func startNewGame() {
@@ -92,6 +110,6 @@ class Presenter: CardsPresenterProtocol, CardsDataStore {
         setUpScore()
         shuffleCards()
         updateUI()
-        viewController?.showBetButton()
+        viewController?.showBetButtons()
     }
 }

@@ -12,8 +12,8 @@ protocol CardsDisplayLogic: class {
     func updateCardView()
     func hideLoadingIndicator()
     func setupScore(score: ScoreCounter)
-    func hideBetButton()
-    func showBetButton()
+    func hideBetButtons()
+    func showBetButtons()
 }
 
 class CardGameViewController: UIViewController, CardsDisplayLogic {
@@ -26,7 +26,7 @@ class CardGameViewController: UIViewController, CardsDisplayLogic {
     @IBOutlet var startNewGameButton: UIButton!
     @IBOutlet var gameOverLabel: UILabel!
 
-    var presenter: (CardsPresenterProtocol & CardsDataStore)?
+    var gamePresenter: (CardsPresenterProtocol & CardsDataStore)?
     var previousCard: Card?
 
     // MARK: Object lifecycle
@@ -45,9 +45,9 @@ class CardGameViewController: UIViewController, CardsDisplayLogic {
 
     private func setup() {
         let viewController = self
-        presenter = Presenter()
-        presenter?.viewController = viewController
-        presenter?.dataFetcherService = DataFetcherService()
+        gamePresenter = CardGamePresenter()
+        gamePresenter?.viewController = viewController
+        gamePresenter?.dataFetcherService = DataFetcherService()
     }
 
     override func viewDidLoad() {
@@ -57,13 +57,13 @@ class CardGameViewController: UIViewController, CardsDisplayLogic {
 
     private func config() {
         showIndicator()
-        showBetButton()
-        presenter?.fetchCards()
+        showBetButtons()
+        gamePresenter?.fetchCards()
     }
 
     // MARK: - Protocol methods
 
-    func hideBetButton() {
+    func hideBetButtons() {
         performUIUpdatesOnMain {
             self.lowerButton.isHidden = true
             self.higherButton.isHidden = true
@@ -72,7 +72,7 @@ class CardGameViewController: UIViewController, CardsDisplayLogic {
         }
     }
 
-    func showBetButton() {
+    func showBetButtons() {
         performUIUpdatesOnMain {
             self.lowerButton.isHidden = false
             self.higherButton.isHidden = false
@@ -87,17 +87,12 @@ class CardGameViewController: UIViewController, CardsDisplayLogic {
     }
 
     func updateCardView() {
-        if cardsDeckNotEmpty() {
-            guard let card = self.presenter?.shuffledCards?.removeLast() else {
-                return
-            }
-
-            presentCard(card: card)
-            setupPreviousCard(card)
-
-        } else {
-            presenter?.gameOver()
+        guard let card = gamePresenter?.getCard() else {
+            return
         }
+
+        presentCard(card: card)
+        setupPreviousCard(card)
     }
 
     fileprivate func presentCard(card: Card) {
@@ -107,15 +102,11 @@ class CardGameViewController: UIViewController, CardsDisplayLogic {
     }
 
     fileprivate func compareCards(lowerCard: Card, higherCard: Card) {
-        presenter?.compareCards(lowerCard: lowerCard, higherCard: higherCard)
+        gamePresenter?.compareCards(lowerCard: lowerCard, higherCard: higherCard)
     }
 
     fileprivate func setupPreviousCard(_ card: Card) {
         previousCard = card
-    }
-
-    fileprivate func cardsDeckNotEmpty() -> Bool {
-        return presenter?.shuffledCards?.count ?? 0 > 0
     }
 
     func hideLoadingIndicator() {
@@ -139,46 +130,35 @@ class CardGameViewController: UIViewController, CardsDisplayLogic {
     }
 
     @IBAction func loverButtonPressed(_: Any) {
-        if cardsDeckNotEmpty() {
-            guard let card = self.presenter?.shuffledCards?.removeLast() else {
-                return
-            }
-
-            presentCard(card: card)
-
-            guard let previousCard = previousCard else {
-                return
-            }
-
-            compareCards(lowerCard: card, higherCard: previousCard)
-            setupPreviousCard(card)
-
-        } else {
-            presenter?.gameOver()
+        guard let card = gamePresenter?.getCard() else {
+            return
         }
+
+        presentCard(card: card)
+        guard let previousCard = previousCard else {
+            return
+        }
+
+        compareCards(lowerCard: card, higherCard: previousCard)
+        setupPreviousCard(card)
     }
 
     @IBAction func higherButonPressed(_: Any) {
-        if cardsDeckNotEmpty() {
-            guard let card = self.presenter?.shuffledCards?.removeLast() else {
-                return
-            }
-
-            presentCard(card: card)
-
-            guard let previousCard = previousCard else {
-                return
-            }
-
-            compareCards(lowerCard: previousCard, higherCard: card)
-            setupPreviousCard(card)
-
-        } else {
-            presenter?.gameOver()
+        guard let card = gamePresenter?.getCard() else {
+            return
         }
+
+        presentCard(card: card)
+
+        guard let previousCard = previousCard else {
+            return
+        }
+
+        compareCards(lowerCard: previousCard, higherCard: card)
+        setupPreviousCard(card)
     }
 
     @IBAction func startNewGameButtonPressed(_: Any) {
-        presenter?.startNewGame()
+        gamePresenter?.startNewGame()
     }
 }
