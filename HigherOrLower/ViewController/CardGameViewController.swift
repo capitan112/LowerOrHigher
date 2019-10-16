@@ -18,6 +18,10 @@ protocol CardsDisplayLogic: class {
 class CardGameViewController: UIViewController, CardsDisplayLogic {
     
     @IBOutlet weak var playedCardView: CardView!
+    
+    @IBOutlet weak var scoreLabel: UILabel!
+    
+    @IBOutlet weak var livesLabel: UILabel!
     var presenter: (CardsPresenterProtocol & CardsDataStore)?
     var previousCard: Card?
 

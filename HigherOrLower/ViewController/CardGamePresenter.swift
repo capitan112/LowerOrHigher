@@ -26,8 +26,10 @@ class Presenter: CardsPresenterProtocol, CardsDataStore {
     var viewController: CardsDisplayLogic?
     internal var cards: [Card]?
     var shuffledCards: [Card]?
+    var scoreCounter: ScoreCounter!
 
     func fetchCards() {
+        scoreCounter = ScoreCounter()
         dataFetcherService?.fetchCardsInfo(completion: { [unowned self] cards in
             self.cards = cards
             self.shuffleCards()
@@ -43,9 +45,16 @@ class Presenter: CardsPresenterProtocol, CardsDataStore {
 
     func compareCards(leftCard: Card, rightCard: Card) {
         if rightCard.getCardRank() >= leftCard.getCardRank() {
-            print("win")
+            scoreCounter.increaseScore()
+//            print("win")
         } else {
-            print("lose")
+            if scoreCounter.getLives() > 0 {
+               scoreCounter.decreaseLives()
+                
+            } else {
+                
+            }
+
         }
         
     }

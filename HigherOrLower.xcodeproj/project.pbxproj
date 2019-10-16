@@ -21,6 +21,7 @@
 		4828DD562356620C00123C2E /* GCDBlackBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4828DD542356620C00123C2E /* GCDBlackBox.swift */; };
 		4828DD572356620C00123C2E /* LoadingIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4828DD552356620C00123C2E /* LoadingIndicatorView.swift */; };
 		4828DD5923571A8B00123C2E /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4828DD5823571A8B00123C2E /* CardView.swift */; };
+		4828DD5B2357575400123C2E /* ScoreCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4828DD5A2357575400123C2E /* ScoreCounter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +53,7 @@
 		4828DD542356620C00123C2E /* GCDBlackBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCDBlackBox.swift; sourceTree = "<group>"; };
 		4828DD552356620C00123C2E /* LoadingIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingIndicatorView.swift; sourceTree = "<group>"; };
 		4828DD5823571A8B00123C2E /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		4828DD5A2357575400123C2E /* ScoreCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreCounter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +132,7 @@
 			children = (
 				4828DD4E23565F7800123C2E /* Card.swift */,
 				4828DD5823571A8B00123C2E /* CardView.swift */,
+				4828DD5A2357575400123C2E /* ScoreCounter.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -262,6 +265,7 @@
 				4828DD52235660C000123C2E /* CardGamePresenter.swift in Sources */,
 				4828DD27235651AB00123C2E /* AppDelegate.swift in Sources */,
 				4828DD4B23565EB100123C2E /* DataFetcherService.swift in Sources */,
+				4828DD5B2357575400123C2E /* ScoreCounter.swift in Sources */,
 				4828DD4C23565EB100123C2E /* NetworkDataFetcher.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
