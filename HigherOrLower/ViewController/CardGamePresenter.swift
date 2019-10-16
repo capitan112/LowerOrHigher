@@ -38,11 +38,11 @@ class CardGamePresenter: CardsPresenterProtocol, CardsDataStore {
             self.updateUI()
         })
 
-        setUpScore()
+        updateScore()
     }
 
-    fileprivate func setUpScore() {
-        viewController?.setupScore(score: scoreCounter)
+    fileprivate func updateScore() {
+        viewController?.updateScore(score: scoreCounter)
     }
 
     func shuffleCards() {
@@ -81,7 +81,7 @@ class CardGamePresenter: CardsPresenterProtocol, CardsDataStore {
             gameOver()
         }
 
-        setUpScore()
+        updateScore()
     }
 
     fileprivate func increaseScore() {
@@ -101,13 +101,13 @@ class CardGamePresenter: CardsPresenterProtocol, CardsDataStore {
     }
 
     func gameOver() {
-        setUpScore()
+        updateScore()
         viewController?.hideBetButtons()
     }
 
     func startNewGame() {
         scoreCounter = ScoreCounter()
-        setUpScore()
+        updateScore()
         shuffleCards()
         updateUI()
         viewController?.showBetButtons()

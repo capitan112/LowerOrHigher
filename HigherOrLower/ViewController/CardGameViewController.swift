@@ -11,7 +11,7 @@ import UIKit
 protocol CardsDisplayLogic: class {
     func updateCardView()
     func hideLoadingIndicator()
-    func setupScore(score: ScoreCounter)
+    func updateScore(score: ScoreCounter)
     func hideBetButtons()
     func showBetButtons()
 }
@@ -81,7 +81,7 @@ class CardGameViewController: UIViewController, CardsDisplayLogic {
         }
     }
 
-    func setupScore(score: ScoreCounter) {
+    func updateScore(score: ScoreCounter) {
         scoreLabel.text = "Score: " + score.getScore()
         livesLabel.text = "Lives: " + score.getLives()
     }
