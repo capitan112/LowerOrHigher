@@ -11,8 +11,10 @@ import Foundation
 protocol CardsPresenterProtocol {
     var dataFetcherService: DataFetcherProtocol? { get set }
     var viewController: CardsDisplayLogic? { get set }
+    func compareCards(previousCard: Card, currentCard: Card)
     func fetchCards()
     func shuffleCards()
+    func gameOver()
 }
 
 protocol CardsDataStore {
@@ -34,7 +36,23 @@ class Presenter: CardsPresenterProtocol, CardsDataStore {
     
     func shuffleCards() {
         shuffledCards = cards?.shuffled()
-        self.viewController?.hideLoadingIndicator() 
+        self.viewController?.hideLoadingIndicator()
         self.viewController?.updateCardView()
     }
+    
+
+    func compareCards(previousCard: Card, currentCard: Card) {
+        if currentCard.getCardRank() >= previousCard.getCardRank() {
+            
+        } else {
+            
+        }
+        
+    }
+    
+    func gameOver() {
+        
+    }
+    
+
 }

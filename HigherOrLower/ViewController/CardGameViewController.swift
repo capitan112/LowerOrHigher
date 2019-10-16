@@ -9,6 +9,8 @@
 import UIKit
 
 protocol CardsDisplayLogic: class {
+    var previousCard: Card? { get set }
+    
     func updateCardView()
     func hideLoadingIndicator()
 }
@@ -17,6 +19,7 @@ class CardGameViewController: UIViewController, CardsDisplayLogic {
     
     @IBOutlet weak var playedCardView: CardView!
     var presenter: (CardsPresenterProtocol & CardsDataStore)?
+    var previousCard: Card?
 
     // MARK: Object lifecycle
 
@@ -52,25 +55,62 @@ class CardGameViewController: UIViewController, CardsDisplayLogic {
     // MARK: - Protocol methods
 
     func updateCardView() {
-        performUIUpdatesOnMain {
-            if self.cardsDeckNotEmpty() {
-                if let card = self.presenter?.shuffledCards?.removeLast() {
+        higherLowerCard()
+//        performUIUpdatesOnMain {
+//            if let card = self.presenter?.shuffledCards?.removeLast() {
+//                self.playedCardView.setupCardView(card: card)
+//
+//                if let previousCard = self.previousCard {
+//                    self.presenter?.compareCards(previousCard:previousCard, currentCard: card)
+//                }
+//
+//                self.previousCard = card
+//            }
+//        }
+    }
+
+    func higherLowerCard() {
+        if self.cardsDeckNotEmpty() {
+            if let card = self.presenter?.shuffledCards?.removeLast() {
+                performUIUpdatesOnMain {
                     self.playedCardView.setupCardView(card: card)
                 }
-            } else {
-                print("game over")
-
+                
+                if let previousCard = self.previousCard {
+                    self.presenter?.compareCards(previousCard:previousCard, currentCard: card)
+                }
+                
+                previousCard = card
             }
-            
+        } else {
+            presenter?.gameOver()
+        }        
+    }
+    
+    func compareLowerCard() {
+        if self.cardsDeckNotEmpty() {
+            if let card = self.presenter?.shuffledCards?.removeLast() {
+                performUIUpdatesOnMain {
+                    self.playedCardView.setupCardView(card: card)
+                }
+                
+                if let previousCard = self.previousCard {
+                    presenter?.compareCards(previousCard:card, currentCard: previousCard)
+                }
+                
+                previousCard = card
+            }
+        } else {
+            presenter?.gameOver()
         }
     }
-
+    
+    private func cardsDeckNotEmpty() -> Bool {
+        return presenter?.shuffledCards?.count ?? 0 > 0
+    }
+    
     func hideLoadingIndicator() {
         hideIndicator()
-    }
-
-    private func cardsDeckNotEmpty() -> Bool {
-        return self.presenter?.shuffledCards?.count ?? 0 > 0
     }
     
     // MARK: - Show/hide indicator
@@ -91,10 +131,10 @@ class CardGameViewController: UIViewController, CardsDisplayLogic {
     
     
     @IBAction func loverButtonPressed(_ sender: Any) {
-        self.updateCardView()
+        compareLowerCard()
     }
     
     @IBAction func higherButonPressed(_ sender: Any) {
-        self.updateCardView()
+        higherLowerCard()
     }
 }

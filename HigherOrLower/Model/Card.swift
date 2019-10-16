@@ -11,6 +11,7 @@ import Foundation
 struct Card: Decodable {
     var value: String
     var suit: String
+    private let ranks = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
     
     func cardTitle() -> String {
         return value + " " + convertToSuit(from: suit).rawValue
@@ -38,6 +39,11 @@ struct Card: Decodable {
         
         return suit
     }
+    
+    func getCardRank() -> Int {
+        return ranks.firstIndex(of: value) ?? 0
+    }
+    
     
 }
 
