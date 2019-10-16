@@ -16,7 +16,7 @@ protocol CardsPresenterProtocol {
 }
 
 protocol CardsDataStore {
-    var cards: [Card]? { get set }
+    var shuffledCards: [Card]? { get set }
 }
 
 class Presenter: CardsPresenterProtocol, CardsDataStore {
@@ -29,11 +29,11 @@ class Presenter: CardsPresenterProtocol, CardsDataStore {
         dataFetcherService?.fetchCardsInfo(completion: { [unowned self] cards in
             self.cards = cards
             self.shuffleCards()
-            self.viewController?.updateCardView()
         })
     }
     
     func shuffleCards() {
         shuffledCards = cards?.shuffled()
+        self.viewController?.updateCardView()
     }
 }

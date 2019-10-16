@@ -16,6 +16,7 @@ protocol CardsDisplayLogic: class {
 }
 
 class CardGameViewController: UIViewController, CardsDisplayLogic {
+    
     var presenter: (CardsPresenterProtocol & CardsDataStore)?
 
     // MARK: Object lifecycle
@@ -52,7 +53,10 @@ class CardGameViewController: UIViewController, CardsDisplayLogic {
     // MARK: - Protocol methods
 
     func updateCardView() {
-        
+        performUIUpdatesOnMain {
+            self.hideIndicator()
+            let card = self.presenter?.shuffledCards?[0]
+        }
     }
 
     func hideLoadingIndicator() {
