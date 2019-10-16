@@ -55,7 +55,7 @@ class Presenter: CardsPresenterProtocol, CardsDataStore {
 
     func compareCards(lowerCard: Card, higherCard: Card) {
         if higherCardBigger(lowerCard: lowerCard, higherCard: higherCard) {
-            scoreCounter.increaseScore()
+            increaseScore()
         } else {
             if livesIsNotOver() {
                 decreaseLives()
@@ -67,6 +67,10 @@ class Presenter: CardsPresenterProtocol, CardsDataStore {
         setUpScore()
     }
 
+    fileprivate func increaseScore() {
+        scoreCounter.increaseScore()
+    }
+    
     fileprivate func decreaseLives() {
         scoreCounter.decreaseLives()
     }
