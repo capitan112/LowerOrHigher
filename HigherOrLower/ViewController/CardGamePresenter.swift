@@ -39,7 +39,7 @@ class Presenter: CardsPresenterProtocol, CardsDataStore {
         setUpScore()
     }
 
-    func setUpScore() {
+    fileprivate func setUpScore() {
         viewController?.setupScore(score: scoreCounter)
     }
 

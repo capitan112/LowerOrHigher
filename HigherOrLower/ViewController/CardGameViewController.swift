@@ -120,14 +120,14 @@ class CardGameViewController: UIViewController, CardsDisplayLogic {
 
     // MARK: - Show/hide indicator
 
-    func showIndicator() {
+    fileprivate func showIndicator() {
         performUIUpdatesOnMain {
             LoadingIndicatorView.show()
             UIApplication.shared.isNetworkActivityIndicatorVisible = true
         }
     }
 
-    func hideIndicator() {
+    fileprivate func hideIndicator() {
         performUIUpdatesOnMain {
             LoadingIndicatorView.hide()
             UIApplication.shared.isNetworkActivityIndicatorVisible = false

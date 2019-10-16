@@ -23,6 +23,15 @@ class CardView: UIView {
     func setupCardView(card: Card) {
         leftUpSuit.text = card.getCardSymbol()
         rightDownSuit.text = card.getCardSymbol()
+        if isRedSuit(card: card) {
+            centerRank.textColor = UIColor.red
+        } else {
+            centerRank.textColor = UIColor.black
+        }
         centerRank.text = card.value
+    }
+
+    func isRedSuit(card: Card) -> Bool {
+        return card.suit == "hearts" || card.suit == "diamonds"
     }
 }
