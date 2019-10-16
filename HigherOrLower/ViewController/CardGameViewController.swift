@@ -98,7 +98,7 @@ class CardGameViewController: UIViewController, CardsDisplayLogic {
 
     fileprivate func presentCard(card: Card) {
         performUIUpdatesOnMain {
-            self.playedCardView.setupCardView(card: card)
+            self.playedCardView.setupCardView(with: card)
         }
     }
 
