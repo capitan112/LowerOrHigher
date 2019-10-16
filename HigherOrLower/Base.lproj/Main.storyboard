@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d6d-bt-BR0" customClass="CardView" customModule="HigherOrLower" customModuleProvider="target">
-                                <rect key="frame" x="120" y="154" width="174" height="324"/>
+                                <rect key="frame" x="119.5" y="154" width="175" height="324"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="08a-PX-fCh">
                                         <rect key="frame" x="8" y="8" width="40" height="40"/>
@@ -32,7 +32,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qtc-is-475">
-                                        <rect key="frame" x="126" y="280" width="40" height="40"/>
+                                        <rect key="frame" x="127" y="280" width="40" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="40" id="Z6Z-g6-Hrz"/>
                                             <constraint firstAttribute="height" constant="40" id="lvH-7g-dXG"/>
@@ -42,7 +42,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YP9-dX-prc">
-                                        <rect key="frame" x="8" y="52" width="158" height="213"/>
+                                        <rect key="frame" x="8" y="52" width="159" height="213"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="80"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -50,10 +50,12 @@
                                 </subviews>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
+                                    <constraint firstAttribute="height" constant="324" id="2dU-BA-bob"/>
                                     <constraint firstItem="YP9-dX-prc" firstAttribute="centerX" secondItem="d6d-bt-BR0" secondAttribute="centerX" id="7uK-3Q-Idp"/>
                                     <constraint firstAttribute="trailing" secondItem="YP9-dX-prc" secondAttribute="trailing" constant="8" id="9jH-fU-CvI"/>
                                     <constraint firstItem="YP9-dX-prc" firstAttribute="centerY" secondItem="d6d-bt-BR0" secondAttribute="centerY" constant="-3.5" id="KbY-ul-gtB"/>
                                     <constraint firstItem="08a-PX-fCh" firstAttribute="top" secondItem="d6d-bt-BR0" secondAttribute="top" constant="8" id="Xyq-eT-gCA"/>
+                                    <constraint firstAttribute="width" constant="175" id="YEr-9R-u91"/>
                                     <constraint firstAttribute="bottom" secondItem="qtc-is-475" secondAttribute="bottom" constant="4" id="c3U-e4-hLr"/>
                                     <constraint firstItem="YP9-dX-prc" firstAttribute="leading" secondItem="d6d-bt-BR0" secondAttribute="leading" constant="8" id="geB-cT-WAL"/>
                                     <constraint firstAttribute="bottom" secondItem="YP9-dX-prc" secondAttribute="bottom" constant="59" id="hun-1O-gNi"/>
@@ -139,13 +141,9 @@
                             <constraint firstItem="36u-VW-Xyo" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="100" id="UoL-j2-e1E"/>
                             <constraint firstItem="nJ2-SR-w8n" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="V8U-QR-bAa"/>
                             <constraint firstItem="d6d-bt-BR0" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="WXP-ql-hm2"/>
-                            <constraint firstItem="d6d-bt-BR0" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="120" id="Wg4-st-6ci"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="d6d-bt-BR0" secondAttribute="bottom" constant="384" id="ZJl-Aw-tya"/>
                             <constraint firstItem="V7B-7R-GCa" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="aNK-H2-0Pj"/>
                             <constraint firstItem="36u-VW-Xyo" firstAttribute="centerY" secondItem="X4n-Pi-Ols" secondAttribute="centerY" id="fKh-M4-c5X"/>
                             <constraint firstItem="d6d-bt-BR0" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="110" id="fsX-Vw-B7C"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="d6d-bt-BR0" secondAttribute="trailing" constant="120" id="mDG-G9-Mbh"/>
-                            <constraint firstItem="d6d-bt-BR0" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" constant="-137" id="s8u-vK-eqQ"/>
                             <constraint firstItem="eqd-gV-HMx" firstAttribute="top" secondItem="d6d-bt-BR0" secondAttribute="bottom" constant="21" id="sig-ca-sQw"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>

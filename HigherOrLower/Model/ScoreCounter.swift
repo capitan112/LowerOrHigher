@@ -29,11 +29,11 @@ class ScoreCounter {
     func getScore() -> String {
         return String(score)
     }
-    
+
     func getLives() -> String {
         return String(lives)
     }
-    
+
     func getScore() -> Int {
         return score
     }

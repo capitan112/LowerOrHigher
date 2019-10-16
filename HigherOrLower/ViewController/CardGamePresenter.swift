@@ -35,15 +35,14 @@ class Presenter: CardsPresenterProtocol, CardsDataStore {
             self.cards = cards
             self.shuffleCards()
         })
-        
+
         setUpScore()
-        
     }
 
     func setUpScore() {
         viewController?.setupScore(score: scoreCounter)
     }
-    
+
     func shuffleCards() {
         shuffledCards = cards?.shuffled()
         viewController?.hideLoadingIndicator()
@@ -60,14 +59,14 @@ class Presenter: CardsPresenterProtocol, CardsDataStore {
                 gameOver()
             }
         }
-        
+
         setUpScore()
     }
 
     func gameOver() {
         viewController?.hideBetButton()
     }
-    
+
     func startNewGame() {
         scoreCounter = ScoreCounter()
         setUpScore()

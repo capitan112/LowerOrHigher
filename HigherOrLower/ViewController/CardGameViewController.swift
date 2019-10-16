@@ -9,7 +9,6 @@
 import UIKit
 
 protocol CardsDisplayLogic: class {
-
     func updateCardView()
     func hideLoadingIndicator()
     func setupScore(score: ScoreCounter)
@@ -18,16 +17,15 @@ protocol CardsDisplayLogic: class {
 }
 
 class CardGameViewController: UIViewController, CardsDisplayLogic {
-    
     @IBOutlet var playedCardView: CardView!
     @IBOutlet var scoreLabel: UILabel!
     @IBOutlet var livesLabel: UILabel!
-    
-    @IBOutlet weak var lowerButton: UIButton!
-    @IBOutlet weak var higherButton: UIButton!
+
+    @IBOutlet var lowerButton: UIButton!
+    @IBOutlet var higherButton: UIButton!
     @IBOutlet var startNewGameButton: UIButton!
-    @IBOutlet weak var gameOverLabel: UILabel!
-    
+    @IBOutlet var gameOverLabel: UILabel!
+
     var presenter: (CardsPresenterProtocol & CardsDataStore)?
     var previousCard: Card?
 
@@ -64,20 +62,21 @@ class CardGameViewController: UIViewController, CardsDisplayLogic {
     }
 
     // MARK: - Protocol methods
+
     func hideBetButton() {
         lowerButton.isHidden = true
         higherButton.isHidden = true
         startNewGameButton.isHidden = false
         gameOverLabel.isHidden = false
     }
-    
+
     func showBetButton() {
         lowerButton.isHidden = false
         higherButton.isHidden = false
         startNewGameButton.isHidden = true
         gameOverLabel.isHidden = true
     }
-    
+
     func setupScore(score: ScoreCounter) {
         scoreLabel.text = "Score: " + score.getScore()
         livesLabel.text = "Lives: " + score.getLives()
@@ -174,11 +173,8 @@ class CardGameViewController: UIViewController, CardsDisplayLogic {
             presenter?.gameOver()
         }
     }
-    
-    
-    @IBAction func startNewGameButtonPressed(_ sender: Any) {
+
+    @IBAction func startNewGameButtonPressed(_: Any) {
         presenter?.startNewGame()
     }
-    
-    
 }
