@@ -11,7 +11,6 @@ import Foundation
 protocol CardsPresenterProtocol {
     var dataFetcherService: DataFetcherProtocol? { get set }
     var viewController: CardsDisplayLogic? { get set }
-    var previousCard: Card? { get set }
     
     func compareCards(lowerCard: Card, higherCard: Card)
     func fetchCards()
@@ -24,6 +23,7 @@ protocol CardsPresenterProtocol {
 
 protocol CardsDataStore {
     var shuffledCards: [Card]? { get set }
+    var previousCard: Card? { get set }
 }
 
 class CardGamePresenter: CardsPresenterProtocol, CardsDataStore {
