@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Card: Decodable {
+struct Card: Decodable, Equatable {
     var value: String
     var suit: String
     private let ranks = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
@@ -39,6 +39,11 @@ struct Card: Decodable {
     func getCardRank() -> Int {
         return ranks.firstIndex(of: value) ?? 0
     }
+    
+}
+
+func ==(lhs: Card, rhs: Card) -> Bool {
+    return lhs.value == rhs.value && lhs.suit == rhs.suit
 }
 
 enum Suit: String {

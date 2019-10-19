@@ -12,7 +12,7 @@
 		4828DD2C235651AB00123C2E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4828DD2A235651AB00123C2E /* Main.storyboard */; };
 		4828DD2E235651AD00123C2E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4828DD2D235651AD00123C2E /* Assets.xcassets */; };
 		4828DD31235651AD00123C2E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4828DD2F235651AD00123C2E /* LaunchScreen.storyboard */; };
-		4828DD3C235651AD00123C2E /* HigherOrLowerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4828DD3B235651AD00123C2E /* HigherOrLowerTests.swift */; };
+		4828DD3C235651AD00123C2E /* CardGamePresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4828DD3B235651AD00123C2E /* CardGamePresenterTests.swift */; };
 		4828DD4A23565EB100123C2E /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4828DD4723565EB000123C2E /* NetworkService.swift */; };
 		4828DD4B23565EB100123C2E /* DataFetcherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4828DD4823565EB000123C2E /* DataFetcherService.swift */; };
 		4828DD4C23565EB100123C2E /* NetworkDataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4828DD4923565EB000123C2E /* NetworkDataFetcher.swift */; };
@@ -43,7 +43,7 @@
 		4828DD30235651AD00123C2E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4828DD32235651AD00123C2E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4828DD37235651AD00123C2E /* HigherOrLowerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HigherOrLowerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		4828DD3B235651AD00123C2E /* HigherOrLowerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HigherOrLowerTests.swift; sourceTree = "<group>"; };
+		4828DD3B235651AD00123C2E /* CardGamePresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardGamePresenterTests.swift; sourceTree = "<group>"; };
 		4828DD3D235651AD00123C2E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4828DD4723565EB000123C2E /* NetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NetworkService.swift; path = HigherOrLower/NetworkService/NetworkService.swift; sourceTree = SOURCE_ROOT; };
 		4828DD4823565EB000123C2E /* DataFetcherService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataFetcherService.swift; path = HigherOrLower/NetworkService/DataFetcherService.swift; sourceTree = SOURCE_ROOT; };
@@ -111,7 +111,7 @@
 		4828DD3A235651AD00123C2E /* HigherOrLowerTests */ = {
 			isa = PBXGroup;
 			children = (
-				4828DD3B235651AD00123C2E /* HigherOrLowerTests.swift */,
+				4828DD3B235651AD00123C2E /* CardGamePresenterTests.swift */,
 				4828DD3D235651AD00123C2E /* Info.plist */,
 			);
 			path = HigherOrLowerTests;
@@ -274,7 +274,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4828DD3C235651AD00123C2E /* HigherOrLowerTests.swift in Sources */,
+				4828DD3C235651AD00123C2E /* CardGamePresenterTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
