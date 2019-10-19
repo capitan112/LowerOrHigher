@@ -21,41 +21,66 @@ class HigherOrLowerTests: XCTestCase {
         super.tearDown()
     }
 
-    func testShuffleCardsShouldProvideShufledDeck() {
+    func testShuffleCardsShouldProvideShuffledDeck() {
 //        Given
-        
 //        When
-        cardGamePresenter.shuffleCards()
-        let firstCard = Card(value: "A", suit: "spades")
+        cardGamePresenter.dataFetcherService = DataFetcherService()
+        let exp = expectation(description: "Completion block called for full deck")
+        
+        cardGamePresenter.dataFetcherService?.fetchCardsInfo(completion: { deck in
+            cardGamePresenter.originDeck = deck
+            exp.fulfill()
+        })
+        
 //        Then
-        if let firtShuffledCard = cardGamePresenter.shuffledCards?[0] {
-            XCTAssertNotEqual(firtShuffledCard, firstCard)
+        waitForExpectations(timeout: 5, handler: nil)
+        cardGamePresenter.shuffleCards()
+
+//        Then
+        guard let shuffledDeck = cardGamePresenter.shuffledDeck else {
+            XCTFail("shuffledDeck is not exist")
+            return
         }
-       
+        
+        guard let originDeck = cardGamePresenter.originDeck else {
+            XCTFail()
+            XCTFail("originDeck is not exist")
+            return
+        }
+        
+        
+        var equalCards = 0
+        
+        for (shuffledCard, originCard) in zip(shuffledDeck, originDeck) {
+            if shuffledCard == originCard {
+                equalCards += 1
+            }
+        }
+        
+        XCTAssertNotEqual(equalCards, originDeck.count, "Shuffed card should be equal origin deck")
     }
 
-    func testFetchCards() {
+    func testFetchCardsShouldReturnFullDeck() {
         //        Given
         cardGamePresenter.dataFetcherService = DataFetcherService()
         let exp = expectation(description: "Completion block called for full deck")
         
         //        When
-        cardGamePresenter.dataFetcherService?.fetchCardsInfo(completion: { cards in
-            cardGamePresenter.cards = cards
+        cardGamePresenter.dataFetcherService?.fetchCardsInfo(completion: { deck in
+            cardGamePresenter.originDeck = deck
             exp.fulfill()
         })
         
         //        Then
         waitForExpectations(timeout: 5, handler: nil)
-        XCTAssertEqual(cardGamePresenter.cards?.count, 52)
+        XCTAssertEqual(cardGamePresenter.originDeck?.count, 52)
         
         let Aspades = Card(value: "A", suit: "spades")
-        XCTAssertEqual(cardGamePresenter.cards?[0], Aspades)
+        XCTAssertEqual(cardGamePresenter.originDeck?[0], Aspades)
         
         let twoSpades = Card(value: "2", suit: "spades")
-        XCTAssertEqual(cardGamePresenter.cards?[1], twoSpades)
+        XCTAssertEqual(cardGamePresenter.originDeck?[1], twoSpades)
         
-        XCTAssertEqual(cardGamePresenter.cards?.count, 52, "Presenter should load 52 cards to deck")
-        
+        XCTAssertEqual(cardGamePresenter.originDeck?.count, 52, "Presenter should load 52 cards to deck")
     }
 }

@@ -22,22 +22,22 @@ protocol CardsPresenterProtocol {
 }
 
 protocol CardsDataStore {
-    var shuffledCards: [Card]? { get set }
+    var shuffledDeck: [Card]? { get set }
     var previousCard: Card? { get set }
 }
 
 class CardGamePresenter: CardsPresenterProtocol, CardsDataStore {
     var dataFetcherService: DataFetcherProtocol?
     var viewController: CardsDisplayLogic?
-    internal var cards: [Card]?
-    var shuffledCards: [Card]?
+    internal var originDeck: [Card]?
+    var shuffledDeck: [Card]?
     var scoreCounter: ScoreCounter!
     var previousCard: Card?
 
     func fetchCards() {
         scoreCounter = ScoreCounter()
-        dataFetcherService?.fetchCardsInfo(completion: { [unowned self] cards in
-            self.cards = cards
+        dataFetcherService?.fetchCardsInfo(completion: { [unowned self] deck in
+            self.originDeck = deck
             self.shuffleCards()
             self.updateUI()
         })
@@ -50,7 +50,7 @@ class CardGamePresenter: CardsPresenterProtocol, CardsDataStore {
     }
 
     func shuffleCards() {
-        shuffledCards = cards?.shuffled()
+        shuffledDeck = originDeck?.shuffled()
     }
 
     func updateUI() {
@@ -60,7 +60,7 @@ class CardGamePresenter: CardsPresenterProtocol, CardsDataStore {
 
     func getCard() -> Card? {
         if cardsDeckNotEmpty() {
-            guard let card = shuffledCards?.removeLast() else {
+            guard let card = shuffledDeck?.removeLast() else {
                 return nil
             }
             
@@ -76,7 +76,7 @@ class CardGamePresenter: CardsPresenterProtocol, CardsDataStore {
     }
 
     fileprivate func cardsDeckNotEmpty() -> Bool {
-        return shuffledCards?.count ?? 0 > 0
+        return shuffledDeck?.count ?? 0 > 0
     }
 
     func compareCards(lowerCard: Card, higherCard: Card) {
