@@ -14,6 +14,7 @@ var cardGamePresenter: CardGamePresenter!
 class HigherOrLowerTests: XCTestCase {
     override func setUp() {
         cardGamePresenter = CardGamePresenter()
+        cardGamePresenter.dataFetcherService = DataFetcherService()
     }
 
     override func tearDown() {
@@ -21,10 +22,7 @@ class HigherOrLowerTests: XCTestCase {
         super.tearDown()
     }
 
-    func testShuffleCardsShouldProvideShuffledDeck() {
-//        Given
-//        When
-        cardGamePresenter.dataFetcherService = DataFetcherService()
+    fileprivate func getDeck() {
         let exp = expectation(description: "Completion block called for full deck")
         
         cardGamePresenter.dataFetcherService?.fetchCardsInfo(completion: { deck in
@@ -32,9 +30,16 @@ class HigherOrLowerTests: XCTestCase {
             exp.fulfill()
         })
         
-//        Then
         waitForExpectations(timeout: 5, handler: nil)
+    }
+    
+    fileprivate func shuffleDeck() {
         cardGamePresenter.shuffleCards()
+    }
+    
+    func testShuffleCardsShouldProvideShuffledDeck() {
+        getDeck()
+        shuffleDeck()
 
 //        Then
         guard let shuffledDeck = cardGamePresenter.shuffledDeck else {
@@ -61,18 +66,8 @@ class HigherOrLowerTests: XCTestCase {
     }
 
     func testFetchCardsShouldReturnFullDeck() {
-        //        Given
-        cardGamePresenter.dataFetcherService = DataFetcherService()
-        let exp = expectation(description: "Completion block called for full deck")
+        getDeck()
         
-        //        When
-        cardGamePresenter.dataFetcherService?.fetchCardsInfo(completion: { deck in
-            cardGamePresenter.originDeck = deck
-            exp.fulfill()
-        })
-        
-        //        Then
-        waitForExpectations(timeout: 5, handler: nil)
         XCTAssertEqual(cardGamePresenter.originDeck?.count, 52)
         
         let Aspades = Card(value: "A", suit: "spades")
@@ -82,5 +77,43 @@ class HigherOrLowerTests: XCTestCase {
         XCTAssertEqual(cardGamePresenter.originDeck?[1], twoSpades)
         
         XCTAssertEqual(cardGamePresenter.originDeck?.count, 52, "Presenter should load 52 cards to deck")
+    }
+    
+    
+    func testGetCardShouldReturnCards() {
+        getDeck()
+        shuffleDeck()
+        
+        guard let card = cardGamePresenter.getCard() else {
+            XCTFail("card shoudl esist after getCard() method")
+            return
+        }
+        
+        XCTAssertNotNil(card)
+    }
+    
+    func testGetCardShouldReturnLastCard() {
+        getDeck()
+        shuffleDeck()
+        let lastShuffledDeckIndex = (cardGamePresenter.shuffledDeck?.count ?? 0) - 1 
+        
+        for _  in 0..<lastShuffledDeckIndex {
+            _ = cardGamePresenter.getCard()
+        }
+        
+        guard let card = cardGamePresenter.getCard() else {
+            XCTFail("card shoudl esist after getCard() method")
+            return
+        }
+        
+        XCTAssertNotNil(card)
+        
+        guard let deck = cardGamePresenter.shuffledDeck else {
+            XCTFail("shuffled deck should exist")
+            return
+        }
+        
+        let cardsInShuffledDeck = deck.count
+        XCTAssertTrue(cardsInShuffledDeck == 0, "Shuffled deck should be empty")
     }
 }

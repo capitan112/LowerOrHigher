@@ -11,7 +11,6 @@ import Foundation
 struct Card: Decodable, Equatable {
     var value: String
     var suit: String
-    private let ranks = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
 
     func getCardSymbol() -> String {
         return convertToSuit(from: suit).rawValue
@@ -37,6 +36,7 @@ struct Card: Decodable, Equatable {
     }
 
     func getCardRank() -> Int {
+        let ranks = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
         return ranks.firstIndex(of: value) ?? 0
     }
     
